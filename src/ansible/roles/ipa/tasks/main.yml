@@ -29,6 +29,8 @@
 
     install-ipa --external-ca
 
+    cp /var/log/ipaserver-install.log /var/log/ipaserver-install.extca.1.log
+
     openssl x509 -days 7200 -req                                 \
       -extfile /data/configs/openssl_sign_ca.ext                 \
       -CA "/data/certs/ca.crt"                                   \
@@ -37,9 +39,14 @@
       -in "/root/ipa.csr"                                        \
       -out "/root/ipa.crt"
 
+    sleep 30
+
     install-ipa                                                  \
       --external-cert-file=/root/ipa.crt                         \
       --external-cert-file=/data/certs/ca.crt
+
+    cp /var/log/ipaserver-install.log /var/log/ipaserver-install.extca.2.log
+
   args:
     creates: /etc/ipa/default.conf
 
