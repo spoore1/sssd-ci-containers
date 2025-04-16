@@ -72,4 +72,7 @@
     file:
       path: /etc/krb5.keytab
       state: absent
-  when: inventory_hostname == groups.client.0
+  when:
+    - inventory_hostname == groups.client.0
+    - join_ipa
+    - virt_smartcard
