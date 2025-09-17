@@ -210,6 +210,18 @@
         - make
     when: virt_smartcard
 
+  - name: Install packages for SCAutolib from general repos
+    dnf:
+      state: present
+      name:
+        - gcc
+        - gdm
+        - tesseract
+        - ffmpeg-free
+        - bzip2
+        - dbus-glib
+    when: virt_smartcard
+
   - name: Install virtual smartcard packages from copr
     dnf:
       state: present
