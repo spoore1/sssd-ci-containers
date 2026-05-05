@@ -1,5 +1,14 @@
 - name: Setup selenium for running test logins against Identity Providers
   block:
+  - name: Install packages required for running selenium
+    dnf:
+      state: present
+      name:
+      - python3-virtualenv
+      - bzip2
+      - gtk3
+      - dbus-glib
+
   - name: Install selenium into the specified (virtualenv), inheriting globally installed modules
     pip:
       name: selenium==4.19.0
