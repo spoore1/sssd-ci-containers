@@ -121,6 +121,20 @@
     path: /usr/share/p11-kit/modules/opensc.module
     line: "disable-in: virt_cacard"
 
+- name: Set OpenSC debug level
+  ansible.builtin.lineinfile:
+    path: /etc/opensc.conf
+    regexp: '^\s*#?\s*debug\s*=.*'
+    line: '	debug = 3;'
+    backrefs: true
+
+- name: Set OpenSC debug log file path
+  ansible.builtin.lineinfile:
+    path: /etc/opensc.conf
+    regexp: '^\s*#?\s*debug_file\s*=.*'
+    line: '	debug_file = /var/log/sssd/opensc-debug.txt;'
+    backrefs: true
+
 - name: Restart pcscd
   systemd_service:
     name: pcscd
