@@ -142,6 +142,7 @@ services:
     - CAP_SETGID
     - CAP_SETUID
     - CAP_DAC_READ_SEARCH
+    - CAP_SYS_TIME
     - MKNOD
     security_opt:
     - apparmor=unconfined
