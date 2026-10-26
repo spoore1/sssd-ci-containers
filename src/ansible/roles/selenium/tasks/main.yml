@@ -1,5 +1,11 @@
 - name: Setup selenium for running test logins against Identity Providers
   block:
+  - name: Install setuptools into the specified (virtualenv), inheriting globally installed modules
+    pip:
+      name: setuptools
+      virtualenv: "{{ test_venv }}"
+      virtualenv_site_packages: yes
+
   - name: Install selenium into the specified (virtualenv), inheriting globally installed modules
     pip:
       name: selenium==4.19.0
